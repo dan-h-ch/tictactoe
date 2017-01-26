@@ -25,13 +25,15 @@ Game.prototype.swapPlayer = function() {
 
 Game.prototype.placeMove = function(x,y) {
   if (this.board[x][y] !== '-') {
-    return 'Invalid Move'
+    console.log('Invalid Move')
     this.print(this.board)
+    this.getMove()
   } else {
     this.board[x][y] = this.player
     this.print(this.board)
     if (this.checkWin(this.player)) {
-      return (`${this.player} wins!`)
+      console.log(`${this.player} wins!`)
+      return 
     } else {
       this.swapPlayer()
       this.getMove()
@@ -63,7 +65,7 @@ Game.prototype.checkHorizontal = function(player) {
 Game.prototype.checkVertical = function(player) {
   if ((this.board[0][0] === player && this.board[1][0] === player && this.board [2][0] === player) 
     || (this.board[0][1] === player && this.board[1][1] === player && this.board [2][1] === player) 
-    || (this.board[2][2] === player && this.board[1][2] === player && this.board [2][2] === player)) {
+    || (this.board[0][2] === player && this.board[1][2] === player && this.board [2][2] === player)) {
     return true
   } else {
     return false
